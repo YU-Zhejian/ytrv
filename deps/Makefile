@@ -1,4 +1,4 @@
-all: libceu munit
+all: libceu munit log.c
 
 #gnulib:
 #	git clone https://git.savannah.gnu.org/git/gnulib.git
@@ -11,3 +11,6 @@ munit:
 
 tomlc99:
 	git clone https://github.com/cktan/tomlc99
+
+log.c:
+	git clone https://github.com/rxi/log.c

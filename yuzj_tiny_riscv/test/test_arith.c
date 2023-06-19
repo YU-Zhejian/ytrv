@@ -35,10 +35,14 @@ MunitResult test_ytrv_unsigned_to_signed(const MunitParameter* ptr, void* pVoid)
 
 MunitResult test_ytrv_sign_extend(const MunitParameter* ptr, void* pVoid)
 {
-	munit_assert_uint32(ytrv_sign_extend(0b00000000000000000000010000010010, 12), ==, 0b00000000000000000000010000010010);
-	munit_assert_uint32(ytrv_sign_extend(0b00000000000000000001000000010010, 12), ==, 0b00000000000000000001000000010010);
-	munit_assert_uint32(ytrv_sign_extend(0b00000000001000000000000000010010, 12), ==, 0b00000000000000000000000000010010);
-	munit_assert_uint32(ytrv_sign_extend(0b00000000000000000000100000010010, 12), ==, 0b11111111111111111111100000010010);
+	munit_assert_uint32(ytrv_sign_extend(0b00000000000000000000010000010010, 12), ==,
+			0b00000000000000000000010000010010);
+	munit_assert_uint32(ytrv_sign_extend(0b00000000000000000001000000010010, 12), ==,
+			0b00000000000000000001000000010010);
+	munit_assert_uint32(ytrv_sign_extend(0b00000000001000000000000000010010, 12), ==,
+			0b00000000000000000000000000010010);
+	munit_assert_uint32(ytrv_sign_extend(0b00000000000000000000100000010010, 12), ==,
+			0b11111111111111111111100000010010);
 	return MUNIT_OK;
 }
 
@@ -54,50 +58,50 @@ MunitTest tests[] = {
 		{
 				"/test_binary_representation",
 				test_binary_representation,
-				NULL,
-				NULL,
-				MUNIT_TEST_OPTION_NONE,
-				NULL
+					  NULL,
+							NULL,
+								  MUNIT_TEST_OPTION_NONE,
+														  NULL
 		},
 		{
 				"/test_ytrv_uint32_sub",
 				test_ytrv_uint32_sub,
-				NULL,
-				NULL,
-				MUNIT_TEST_OPTION_NONE,
-				NULL
+					  NULL,
+							NULL,
+								  MUNIT_TEST_OPTION_NONE,
+														  NULL
 		},
 		{
 				"/test_ytrv_to_negative",
 				test_ytrv_to_negative,
-				NULL,
-				NULL,
-				MUNIT_TEST_OPTION_NONE,
-				NULL
+					  NULL,
+							NULL,
+								  MUNIT_TEST_OPTION_NONE,
+														  NULL
 		},
 		{
 				"/test_ytrv_get_msb",
 				test_ytrv_get_msb,
-				NULL,
-				NULL,
-				MUNIT_TEST_OPTION_NONE,
-				NULL
+					  NULL,
+							NULL,
+								  MUNIT_TEST_OPTION_NONE,
+														  NULL
 		},
 		{
 				"/test_ytrv_unsigned_to_signed",
 				test_ytrv_unsigned_to_signed,
-				NULL,
-				NULL,
-				MUNIT_TEST_OPTION_NONE,
-				NULL
+					  NULL,
+							NULL,
+								  MUNIT_TEST_OPTION_NONE,
+														  NULL
 		},
 		{
 				"/test_ytrv_sign_extend",
 				test_ytrv_sign_extend,
-				NULL,
-				NULL,
-				MUNIT_TEST_OPTION_NONE,
-				NULL
+					  NULL,
+							NULL,
+								  MUNIT_TEST_OPTION_NONE,
+														  NULL
 		},
 		// Last item that should be placed due to its documentation
 		{ NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }

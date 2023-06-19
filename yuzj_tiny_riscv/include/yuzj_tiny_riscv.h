@@ -30,7 +30,9 @@ static const int YTRV_RV32I_XLEN = 32;
 // Arithmetic functions
 
 uint32_t ytrv_uint32_sub(uint32_t src_int, uint8_t from_pos, uint8_t to_pos);
+
 uint32_t ytrv_sign_extend(uint32_t src_num, uint8_t msb);
+
 /*!
  * Convert unsigned number to signed number.
  *
@@ -39,6 +41,7 @@ uint32_t ytrv_sign_extend(uint32_t src_num, uint8_t msb);
  * @return Converted number. Would set highest bit to 1 for negative numbers.
  */
 uint32_t ytrv_unsigned_to_signed(uint32_t src_num, bool is_positive);
+
 uint32_t ytrv_get_msb(uint32_t src_num);
 
 // VM-related params

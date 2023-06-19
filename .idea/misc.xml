@@ -9,12 +9,17 @@
       <file path="$PROJECT_DIR$/build_msys2" />
       <file path="$PROJECT_DIR$/build_ucrt64" />
       <file path="$PROJECT_DIR$/cmake-build-debug" />
+      <file path="$PROJECT_DIR$/cmake-build-debug-llvm_amd" />
       <file path="$PROJECT_DIR$/cmake-build-debug-mingw" />
+      <file path="$PROJECT_DIR$/cmake-build-debug-nvcc" />
+      <file path="$PROJECT_DIR$/cmake-build-debug-tcc" />
       <file path="$PROJECT_DIR$/deps/gnulib" />
       <file path="$PROJECT_DIR$/deps/libceu/.vscode" />
       <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/libcmake/build" />
       <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/libcmake/log" />
       <file path="$PROJECT_DIR$/deps/libceu/doxygen.out.d" />
+      <file path="$PROJECT_DIR$/deps/log.c" />
+      <file path="$PROJECT_DIR$/deps/log4c-log4c" />
       <file path="$PROJECT_DIR$/deps/munit" />
       <file path="$PROJECT_DIR$/out" />
     </excludeRoots>

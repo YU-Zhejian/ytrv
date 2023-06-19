@@ -15,7 +15,7 @@ else ()
 endif ()
 
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/lib")
-add_executable (yuzj_tiny_riscv "main.c")
-target_link_libraries (yuzj_tiny_riscv "${CEU_LIBRARY_STATIC}" "${YTRV_LIBRARY_STATIC}")
+add_executable(yuzj_tiny_riscv "main.c")
+target_link_libraries(yuzj_tiny_riscv "${CEU_LIBRARY_SHARED}" "${YTRV_LIBRARY_SHARED}" log_c_shared)
 
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/test")

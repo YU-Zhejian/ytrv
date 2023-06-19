@@ -4,7 +4,7 @@ extern "C"
 #endif
 
 #include <stdio.h>
-
+#include <log.h>
 #include "yuzj_tiny_riscv.h"
 
 ytrv_vm_t* ytrv_vm_init()
@@ -29,6 +29,7 @@ void ytrv_vm_addi(ytrv_vm_t* vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
 {
 	vm->x[rd] = vm->x[rsrc1] + imm;
 }
+
 void ytrv_vm_slti(ytrv_vm_t* vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
 {
 	vm->x[rd] = (vm->x[rsrc1] < imm); // FIXME
@@ -39,7 +40,7 @@ void ytrv_vm_exec_single(ytrv_vm_t* vm, uint32_t instruction)
 	uint32_t opcode = ytrv_uint32_sub(instruction, 0, 7);
 	printf("EXEC_TRACE INSTRUCT OPCODE 0x%x\n", opcode);
 	// Define all possible names
-	uint32_t rd ; // Destination register
+	uint32_t rd; // Destination register
 	uint32_t funct3;// Operation
 	uint32_t rsrc1;  // Source register
 	uint32_t imm; // Sign-Extended Immediate number
@@ -58,7 +59,7 @@ void ytrv_vm_exec_single(ytrv_vm_t* vm, uint32_t instruction)
 					ytrv_uint32_sub(instruction, 20, 32),
 					12
 			);
-			printf("EXEC_INST ADDI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
+			log_debug("EXEC_INST ADDI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
 			ytrv_vm_addi(vm, rsrc1, rd, imm);
 			break;
 		case (0b010): // SLTI
@@ -67,7 +68,7 @@ void ytrv_vm_exec_single(ytrv_vm_t* vm, uint32_t instruction)
 					ytrv_uint32_sub(instruction, 20, 32),
 					12
 			); // Immediate number
-			printf("EXEC_INST SLTI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
+			log_debug("EXEC_INST SLTI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
 			ytrv_vm_slti(vm, rsrc1, rd, imm);
 			break;
 		default:
