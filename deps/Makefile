@@ -1,8 +1,13 @@
-all: gnulib libceu cmake_collections
+all: libceu munit
 
-
-gnulib:
-	git clone https://git.savannah.gnu.org/git/gnulib.git
+#gnulib:
+#	git clone https://git.savannah.gnu.org/git/gnulib.git
 
 libceu:
 	git clone https://codeup.aliyun.com/646607f7b60a10415c320130/DevOps/libceu.git
+
+munit:
+	git clone https://github.com/nemequ/munit.git
+
+tomlc99:
+	git clone https://github.com/cktan/tomlc99

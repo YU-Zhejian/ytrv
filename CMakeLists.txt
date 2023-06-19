@@ -10,12 +10,12 @@ if (POLICY CMP0141)
 endif()
 
 project ("cpptest")
-set(SHOULD_ENABLE_TEST FALSE)
-set(IS_DEBUG TRUE)
-set(SHOULD_BUILD_STATIC FALSE)
 
 # Include sub-projects.
 add_subdirectory ("deps/libceu")
 include("deps/libceu/cmake/libceu.cmake")
-add_subdirectory ("cpptest")
+
+add_subdirectory("deps/munit_wrapper")
+include_directories("deps/munit")
+
 add_subdirectory ("yuzj_tiny_riscv")

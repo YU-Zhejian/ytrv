@@ -1,0 +1,40 @@
+﻿enable_testing()
+
+if (YTRV_BUILD_SHARED)
+    set(YTRV_TEST_BUILD_SHARED TRUE)
+    message(STATUS "YTRV: Will build shared test")
+else ()
+    set(YTRV_TEST_BUILD_SHARED FALSE)
+    message(STATUS "YTRV: Will NOT build shared test")
+endif ()
+if (YTRV_BUILD_STATIC)
+    set(YTRV_TEST_BUILD_STATIC TRUE)
+    message(STATUS "YTRV: Will build static test")
+else ()
+    set(YTRV_TEST_BUILD_STATIC FALSE)
+    message(STATUS "YTRV: Will NOT build static test")
+endif ()
+
+
+set(YTRV_TEST_LIBRARY_SHARED ${CEU_LIBRARY_SHARED} ${YTRV_LIBRARY_SHARED} munit)
+set(YTRV_TEST_LIBRARY_STATIC ${CEU_LIBRARY_STATIC} ${YTRV_LIBRARY_STATIC} munit)
+
+macro(ytrv_add_test source_name)
+    if (YTRV_TEST_BUILD_SHARED)
+        add_executable("test_ytrv_${source_name}_shared" "${CMAKE_CURRENT_LIST_DIR}/test_${source_name}.c")
+        target_link_libraries("test_ytrv_${source_name}_shared" ${YTRV_TEST_LIBRARY_SHARED})
+        add_test(NAME "test_ytrv_${source_name}_shared" COMMAND "test_ytrv_${source_name}_shared")
+        message(STATUS "YTRV: Adding test test_ytrv_${source_name}_shared")
+    endif ()
+    if (YTRV_TEST_BUILD_STATIC)
+        add_executable("test_ytrv_${source_name}_static" "${CMAKE_CURRENT_LIST_DIR}/test_${source_name}.c")
+        target_link_libraries("test_ytrv_${source_name}_static" ${YTRV_TEST_LIBRARY_STATIC})
+        set_static_cmake("test_ytrv_${source_name}_static")
+        add_test(NAME "test_ytrv_${source_name}_static" COMMAND "test_ytrv_${source_name}_static")
+        message(STATUS "YTRV: Adding test test_ytrv_${source_name}_static")
+    endif ()
+endmacro()
+
+
+ytrv_add_test("arith")
+
