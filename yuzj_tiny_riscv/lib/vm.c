@@ -32,7 +32,27 @@ void ytrv_vm_addi(ytrv_vm_t* vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
 
 void ytrv_vm_slti(ytrv_vm_t* vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
 {
-	vm->x[rd] = (vm->x[rsrc1] < imm); // FIXME
+	vm->x[rd] = (ytrv_encoded_unsigned_to_signed(vm->x[rsrc1]) < ytrv_encoded_unsigned_to_signed(imm));
+}
+
+void ytrv_vm_sltiu(ytrv_vm_t* vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
+{
+	vm->x[rd] = (vm->x[rsrc1] < imm);
+}
+
+void ytrv_vm_andi(ytrv_vm_t* vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
+{
+	vm->x[rd] = (vm->x[rsrc1] & imm);
+}
+
+void ytrv_vm_ori(ytrv_vm_t* vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
+{
+	vm->x[rd] = (vm->x[rsrc1] | imm);
+}
+
+void ytrv_vm_xori(ytrv_vm_t* vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
+{
+	vm->x[rd] = (vm->x[rsrc1] ^ imm);
 }
 
 void ytrv_vm_exec_single(ytrv_vm_t* vm, uint32_t instruction)
@@ -64,13 +84,53 @@ void ytrv_vm_exec_single(ytrv_vm_t* vm, uint32_t instruction)
 			break;
 		case (0b010): // SLTI
 			;
-			uint32_t imm = ytrv_sign_extend(
+			imm = ytrv_sign_extend(
 					ytrv_uint32_sub(instruction, 20, 32),
 					12
 			); // Immediate number
 			log_debug("EXEC_INST SLTI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
 			ytrv_vm_slti(vm, rsrc1, rd, imm);
 			break;
+		case (0b011): // SLTIU
+			;
+			imm = ytrv_sign_extend(
+					ytrv_uint32_sub(instruction, 20, 32),
+					12
+			); // Immediate number
+			log_debug("EXEC_INST SLTIU(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
+			ytrv_vm_sltiu(vm, rsrc1, rd, imm);
+			break;
+		case (0b0111): // ANDI
+			;
+			imm = ytrv_sign_extend(
+					ytrv_uint32_sub(instruction, 20, 32),
+					12
+			); // Immediate number
+			if (imm == 0 & rsrc1 == 0 & rd == 0){ // NOP
+				break;
+			}
+			log_debug("EXEC_INST ANDI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
+			ytrv_vm_andi(vm, rsrc1, rd, imm);
+			break;
+		case (0b110): // ORI
+			;
+			imm = ytrv_sign_extend(
+					ytrv_uint32_sub(instruction, 20, 32),
+					12
+			); // Immediate number
+			log_debug("EXEC_INST ORI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
+			ytrv_vm_ori(vm, rsrc1, rd, imm);
+			break;
+		case (0b100): // XORI
+			;
+			imm = ytrv_sign_extend(
+					ytrv_uint32_sub(instruction, 20, 32),
+					12
+			); // Immediate number
+			log_debug("EXEC_INST XORI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
+			ytrv_vm_xori(vm, rsrc1, rd, imm);
+			break;
+
 		default:
 			// TODO: Except
 			break;

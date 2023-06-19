@@ -23,19 +23,27 @@ uint32_t ytrv_get_msb(uint32_t src_num)
 	return msb;
 }
 
-uint32_t ytrv_unsigned_to_signed(uint32_t src_num, bool is_positive)
-{
-	if (is_positive)
+int32_t ytrv_encoded_unsigned_to_signed(uint32_t src_num){
+	if ((src_num >> 31) == 0)
+	{ // Positive
+		return (int32_t) src_num;
+	}
+	else
 	{
-		if (ytrv_uint32_sub(src_num, 31, 32) == 1)
-		{
-			// TODO: Except overflow
-		}
+		return - (int32_t) ytrv_to_negative(src_num);
+	}
+}
+
+
+uint32_t ytrv_signed_to_encoded_unsigned(int32_t src_num)
+{
+	if (src_num > 0)
+	{
 		return src_num;
 	}
 	else
 	{
-		return ~src_num + 1;
+		return ~(- src_num) + 1;
 	}
 }
 

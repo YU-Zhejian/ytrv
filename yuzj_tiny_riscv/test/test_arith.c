@@ -26,10 +26,16 @@ MunitResult test_ytrv_get_msb(const MunitParameter* ptr, void* pVoid)
 
 MunitResult test_ytrv_unsigned_to_signed(const MunitParameter* ptr, void* pVoid)
 {
-	munit_assert_uint32(ytrv_unsigned_to_signed(15, true), ==, 15);
-	munit_assert_uint32(ytrv_unsigned_to_signed(15, false), ==, 0b11111111111111111111111111110001);
-	munit_assert_uint32(ytrv_unsigned_to_signed(16, true), ==, 16);
-	munit_assert_uint32(ytrv_unsigned_to_signed(16, false), ==, 0b11111111111111111111111111110000);
+	munit_assert_uint32(ytrv_signed_to_encoded_unsigned(15), ==, 15);
+	munit_assert_uint32(ytrv_signed_to_encoded_unsigned(-15), ==, 0b11111111111111111111111111110001);
+	munit_assert_uint32(ytrv_signed_to_encoded_unsigned(16), ==, 16);
+	munit_assert_uint32(ytrv_signed_to_encoded_unsigned(-16), ==, 0b11111111111111111111111111110000);
+
+	munit_assert_uint32(ytrv_encoded_unsigned_to_signed(15), ==, 15);
+	munit_assert_uint32(ytrv_encoded_unsigned_to_signed(0b11111111111111111111111111110001), ==, -15);
+	munit_assert_uint32(ytrv_encoded_unsigned_to_signed(16), ==, 16);
+	munit_assert_uint32(ytrv_encoded_unsigned_to_signed(0b11111111111111111111111111110000), ==, -16);
+
 	return MUNIT_OK;
 }
 
