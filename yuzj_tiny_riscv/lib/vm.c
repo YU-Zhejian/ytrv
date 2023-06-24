@@ -106,7 +106,7 @@ void ytrv_vm_exec_single(ytrv_vm_t* vm, uint32_t instruction)
 					ytrv_uint32_sub(instruction, 20, 32),
 					12
 			); // Immediate number
-			if (imm == 0 & rsrc1 == 0 & rd == 0){ // NOP
+			if ((imm == 0) & (rsrc1 == 0) & (rd == 0)) { // NOP
 				break;
 			}
 			log_debug("EXEC_INST ANDI(SRC=%d, DEST=%d, IMMNUM=%d) \n", rsrc1, rd, imm);
@@ -140,12 +140,6 @@ void ytrv_vm_exec_single(ytrv_vm_t* vm, uint32_t instruction)
 		// TODO: Except
 		break;
 	}
-}
-
-
-void ytrv_vm_exec(ytrv_vm_t* vm, uint32_t* instructions)
-{
-
 }
 
 #ifdef __cplusplus

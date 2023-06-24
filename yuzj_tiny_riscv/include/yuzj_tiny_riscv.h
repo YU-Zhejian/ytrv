@@ -65,8 +65,6 @@ void ytrv_vm_destroy(ytrv_vm_t* vm);
 
 void ytrv_vm_exec_single(ytrv_vm_t* vm, uint32_t instruction);
 
-void ytrv_vm_exec(ytrv_vm_t* vm, uint32_t* instructions);
-
 uint32_t ytrv_to_negative(uint32_t src_num);
 
 #ifdef __cplusplus

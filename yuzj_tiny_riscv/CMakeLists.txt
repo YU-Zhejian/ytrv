@@ -15,7 +15,9 @@ else ()
 endif ()
 
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/lib")
-add_executable(yuzj_tiny_riscv "main.c")
-target_link_libraries(yuzj_tiny_riscv "${CEU_LIBRARY_SHARED}" "${YTRV_LIBRARY_SHARED}" log_c_shared)
-
+add_executable(yuzj_tiny_riscv_shared "main.c")
+add_executable(yuzj_tiny_riscv_static "main.c")
+set_static_cmake(yuzj_tiny_riscv_static)
+target_link_libraries(yuzj_tiny_riscv_shared PUBLIC "${CEU_LIBRARY_SHARED}" "${YTRV_LIBRARY_SHARED}" log_c_shared)
+target_link_libraries(yuzj_tiny_riscv_static PUBLIC "${CEU_LIBRARY_STATIC}" "${YTRV_LIBRARY_STATIC}" log_c_static)
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/test")
