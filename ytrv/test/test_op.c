@@ -7,7 +7,7 @@ MunitResult test_addi()
 {
 	uint32_t max_uint32 = 4294967295;  // (1<<32) - 1; represents -1 in signed int32
 
-	ytrv_vm_t *vm = ytrv_vm_init(false);
+	ytrv_vm_t *vm = ytrv_vm_init(0);
 	// Normal condition
 	vm->x[1] = 1;
 	ytrv_op_addi(vm, 1, 2, 15);
@@ -39,7 +39,7 @@ MunitResult test_addi()
 
 MunitResult test_slti()
 {
-	ytrv_vm_t *vm = ytrv_vm_init(false);
+	ytrv_vm_t *vm = ytrv_vm_init(0);
 	vm->x[1] = 1;
 	ytrv_op_slti(vm, 1, 2, 0);
 	munit_assert_uint32(vm->x[2], ==, 0);
@@ -77,7 +77,7 @@ MunitResult test_slti()
 
 MunitResult test_sltiu()
 {
-	ytrv_vm_t *vm = ytrv_vm_init(false);
+	ytrv_vm_t *vm = ytrv_vm_init(0);
 	vm->x[1] = 1;
 	ytrv_op_sltiu(vm, 1, 2, 0);
 	munit_assert_uint32(vm->x[2], ==, 0);

@@ -14,3 +14,8 @@ tomlc99:
 
 log.c:
 	git clone https://github.com/rxi/log.c
+
+cn:
+	git clone https://gitee.com/tianfuzeng/munit
+	git clone https://gitee.com/mirrors_rxi/log.c
+

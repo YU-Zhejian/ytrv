@@ -1,3 +1,7 @@
+/**
+ * YTRV base specifications.
+ */
+
 #ifndef YUZJ_TINY_RISCV_BASE_H
 #define YUZJ_TINY_RISCV_BASE_H
 #ifdef __cplusplus
@@ -7,6 +11,7 @@ extern "C"
 
 #include <assert.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 static_assert(
 	(uint32_t)4294967295 == (int32_t)-1,
@@ -42,6 +47,20 @@ enum YTRV_RV32I_OPCODES
 	YTRV_OPCODE_OP = 0b0110011,
 	YTRV_OPCODE_MISC_MEM = 0b0001111,
 	YTRV_OPCODE_SYSTEM = 0b1110011,
+};
+
+enum YTRV_OPCODE_OP_IMM_FUNCT3
+{
+	YTRV_OPCODE_OP_IMM_FUNCT3_ADDI = 0b000,
+	YTRV_OPCODE_OP_IMM_FUNCT3_SLTI = 0b010,
+	YTRV_OPCODE_OP_IMM_FUNCT3_SLTIU = 0b011,
+	YTRV_OPCODE_OP_IMM_FUNCT3_ANDI = 0b0111,
+	YTRV_OPCODE_OP_IMM_FUNCT3_ORI = 0b110,
+	YTRV_OPCODE_OP_IMM_FUNCT3_XORI = 0b100,
+	YTRV_OPCODE_OP_IMM_FUNCT3_SLLI = 0b001,
+	YTRV_OPCODE_OP_IMM_FUNCT3_SRLI_SRAI = 0b101,
+
+	// case (): // SLTIU (): //  (): // (): //
 };
 
 typedef enum

@@ -13,6 +13,9 @@ void ytrv_op_sltiu(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t imm);
 void ytrv_op_andi(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t imm);
 void ytrv_op_ori(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t imm);
 void ytrv_op_xori(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t imm);
+void ytrv_op_slli(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t shamt);
+void ytrv_op_srli(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t shamt);
+void ytrv_op_srai(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t shamt);
 
 #ifdef __cplusplus
 }

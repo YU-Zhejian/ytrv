@@ -26,7 +26,7 @@ int main()
 	print_version_info();
 	fflush(stdout);
 	log_info("Allocating memory...");
-	ytrv_vm_t *vm = ytrv_vm_init(true);
+	ytrv_vm_t *vm = ytrv_vm_init(1024 * 1024); // 1 mega bytes
 	log_info("Allocating memory SUCCESS");
 	ytrv_vm_exec_single(vm, 0b11111111111111111000111110010011);
 	log_info("Deallocating memory...");
