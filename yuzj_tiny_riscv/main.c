@@ -3,22 +3,21 @@
 #include <ceu_check/ceu_check_all.h>
 #include <log.h>
 
-#include "yuzj_tiny_riscv.h"
+#include "ytrv/vm.h"
 
 
 void print_version_info()
 {
-	char* cbuff = get_full_info();
+	char *cbuff = get_full_info();
 	printf("%s\n", cbuff);
 	ceu_free_non_null(cbuff);
 }
 
-
 int main()
 {
 	log_set_level(LOG_INFO);
-	FILE* log_file = fopen("log.log", "a");
-	if (log_file == NULL){
+	FILE *log_file = fopen("log.log", "a");
+	if (log_file == NULL) {
 		ceu_die_with_retv("Cannot open log!", 1);
 	}
 	log_add_fp(log_file, LOG_TRACE);
@@ -27,7 +26,7 @@ int main()
 	print_version_info();
 	fflush(stdout);
 	log_info("Allocating memory...");
-	ytrv_vm_t* vm = ytrv_vm_init();
+	ytrv_vm_t *vm = ytrv_vm_init(true);
 	log_info("Allocating memory SUCCESS");
 	ytrv_vm_exec_single(vm, 0b11111111111111111000111110010011);
 	log_info("Deallocating memory...");

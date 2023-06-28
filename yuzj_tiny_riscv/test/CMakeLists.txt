@@ -37,4 +37,5 @@ endmacro()
 
 
 ytrv_add_test("arith")
+ytrv_add_test("op")
 
