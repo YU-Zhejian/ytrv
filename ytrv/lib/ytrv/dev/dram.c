@@ -1,5 +1,5 @@
 /*!
- * Header for a basic DRAM.
+ * Header for a basic little-endian DRAM.
  */
 #ifdef __cplusplus
 extern "C"
