@@ -13,8 +13,10 @@
       <file path="$PROJECT_DIR$/cmake-build-debug-mingw" />
       <file path="$PROJECT_DIR$/cmake-build-debug-nvcc" />
       <file path="$PROJECT_DIR$/cmake-build-debug-tcc" />
+      <file path="$PROJECT_DIR$/deps/doctest" />
       <file path="$PROJECT_DIR$/deps/gnulib" />
       <file path="$PROJECT_DIR$/deps/libceu/.vscode" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/.vscode" />
       <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/libcmake/build" />
       <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/libcmake/log" />
       <file path="$PROJECT_DIR$/deps/libceu/doxygen.out.d" />

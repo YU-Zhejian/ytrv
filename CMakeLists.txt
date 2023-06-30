@@ -9,7 +9,7 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("ytrv")
+project ("ytrv_all" LANGUAGES C CXX)
 
 # Include sub-projects.
 add_subdirectory ("deps/libceu")
@@ -21,4 +21,9 @@ include_directories("deps/munit")
 add_subdirectory("deps/log.c_wrapper")
 include_directories("deps/log.c/src")
 
+add_subdirectory("deps/doctest")
+include_directories("deps/doctest/doctest")
+
 add_subdirectory ("ytrv")
+include_directories("ytrv/include")
+add_subdirectory ("ytrv_test")

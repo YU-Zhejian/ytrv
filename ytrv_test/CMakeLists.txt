@@ -1,23 +1,24 @@
-﻿enable_testing()
+﻿project ("ytrv_test" LANGUAGES C CXX)
+
+enable_testing()
 
 if (YTRV_BUILD_SHARED)
     set(YTRV_TEST_BUILD_SHARED TRUE)
-    message(STATUS "YTRV: Will build shared test")
+    message(STATUS "${PROJECT_NAME}: Will build shared ${PROJECT_NAME}")
 else ()
     set(YTRV_TEST_BUILD_SHARED FALSE)
-    message(STATUS "YTRV: Will NOT build shared test")
+    message(STATUS "${PROJECT_NAME}: Will NOT build shared ${PROJECT_NAME}")
 endif ()
 if (YTRV_BUILD_STATIC)
     set(YTRV_TEST_BUILD_STATIC TRUE)
-    message(STATUS "YTRV: Will build static test")
+    message(STATUS "${PROJECT_NAME}: Will build static ${PROJECT_NAME}")
 else ()
     set(YTRV_TEST_BUILD_STATIC FALSE)
-    message(STATUS "YTRV: Will NOT build static test")
+    message(STATUS "${PROJECT_NAME}: Will NOT build static ${PROJECT_NAME}")
 endif ()
 
-
-set(YTRV_TEST_LIBRARY_SHARED ${CEU_LIBRARY_SHARED} ${YTRV_LIBRARY_SHARED} munit_shared)
-set(YTRV_TEST_LIBRARY_STATIC ${CEU_LIBRARY_STATIC} ${YTRV_LIBRARY_STATIC} munit_static)
+set(YTRV_TEST_LIBRARY_SHARED ${CEU_LIBRARY_SHARED} ${YTRV_LIBRARY_SHARED} doctest::doctest_with_main)
+set(YTRV_TEST_LIBRARY_STATIC ${CEU_LIBRARY_STATIC} ${YTRV_LIBRARY_STATIC} doctest::doctest_with_main)
 
 macro(ytrv_add_test source_name)
     if (YTRV_TEST_BUILD_SHARED)
@@ -38,4 +39,4 @@ endmacro()
 
 ytrv_add_test("arith")
 ytrv_add_test("op")
-
+add_subdirectory("dev")

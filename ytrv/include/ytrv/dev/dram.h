@@ -12,10 +12,14 @@ extern "C"
 
 #include <stdint.h>
 
+#define YTRV_DEV_DRAM_BYTE_LENGTHG 8
+#define YTRV_DEV_DRAM_BASE 0x80000000 // The memory address started at 2147483648
+
 typedef struct
 {
 	uint64_t length;
 	uint8_t *mem;
+	uint64_t end;
 } ytrv_dev_dram_t;
 
 uint8_t ytrv_dev_dram_load_uint8(ytrv_dev_dram_t *dram, uint64_t address);
