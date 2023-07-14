@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+import sys
+import subprocess
+import os
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    print("CC " + os.path.basename(args[1]))
+    p = subprocess.Popen(
+        args=args
+    )
+    retv = p.wait()
+    sys.exit(retv)

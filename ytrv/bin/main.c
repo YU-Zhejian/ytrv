@@ -8,7 +8,7 @@
 
 void print_version_info()
 {
-	char *cbuff = get_full_info();
+	char *cbuff = ceu_check_get_full_info();
 	printf("%s\n", cbuff);
 	ceu_free_non_null(cbuff);
 }

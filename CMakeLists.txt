@@ -1,13 +1,4 @@
-﻿# CMakeList.txt : Top-level CMake project file, do global configuration
-# and include sub-projects here.
-#
-cmake_minimum_required (VERSION 3.8)
-
-# Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
+﻿cmake_minimum_required (VERSION 3.8)
 
 project ("ytrv_all" LANGUAGES C CXX)
 
@@ -15,15 +6,13 @@ project ("ytrv_all" LANGUAGES C CXX)
 add_subdirectory ("deps/libceu")
 include("deps/libceu/cmake/libceu.cmake")
 
-add_subdirectory("deps/munit_wrapper")
-include_directories("deps/munit")
-
-add_subdirectory("deps/log.c_wrapper")
+add_subdirectory("deps/log.c")
 include_directories("deps/log.c/src")
 
-add_subdirectory("deps/doctest")
-include_directories("deps/doctest/doctest")
+add_subdirectory("deps/googletest")
+include_directories("deps/googletest/googletest/include")
+include_directories("deps/googletest/googlemock/include")
 
 add_subdirectory ("ytrv")
-include_directories("ytrv/include")
+include("ytrv/cmake/ytrv.cmake")
 add_subdirectory ("ytrv_test")

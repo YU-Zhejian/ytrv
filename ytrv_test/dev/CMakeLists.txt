@@ -1,1 +1,1 @@
-ytrv_add_test("dram")
+ytrv_add_test("dev_dram" "${CMAKE_CURRENT_LIST_DIR}/test_dram.cpp")
