@@ -13,26 +13,19 @@ extern "C"
 #include <stdint.h>
 #include <stdbool.h>
 
-static_assert(
-	(uint32_t)4294967295 == (int32_t)-1,
-	"this program requires 2's complement"
-);
-static_assert(
-	(uint32_t)1 == (int32_t)1,
-	"this program requires 2's complement"
-);
-static_assert(
-	(uint32_t)-1 == (uint32_t)4294967295,
-	"this program requires 2's complement"
-);
-static_assert(
-	(uint32_t)true == 1,
-	"this program requires true defined as 1"
-);
-static_assert(
-	(uint32_t)false == 0,
-	"this program requires false defined as 0"
-);
+static inline void ytrv_compiler_check(void)
+{
+	volatile uint32_t a = 4294967295;
+	volatile int32_t b = -1;
+	volatile uint32_t c = 1;
+	volatile int32_t d = 1;
+	volatile uint32_t e = -1;
+	assert(a == (uint32_t)b);
+	assert(a == e);
+	assert(c == d);
+	assert((uint32_t)true == 1);
+	assert((uint32_t)false == 0);
+}
 
 enum YTRV_RV32I_OPCODES
 {
