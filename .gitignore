@@ -1,4 +1,6 @@
 .vs/
 cmake-*/
+!CMakeLists.txt
 build*/
 .idea/sonarlint/
+.idea/.name

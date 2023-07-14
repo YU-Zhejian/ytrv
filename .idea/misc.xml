@@ -3,6 +3,7 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <excludeRoots>
+      <file path="$PROJECT_DIR$/.kdev4" />
       <file path="$PROJECT_DIR$/.vs" />
       <file path="$PROJECT_DIR$/build" />
       <file path="$PROJECT_DIR$/build_mingw64" />
@@ -13,11 +14,25 @@
       <file path="$PROJECT_DIR$/cmake-build-debug-mingw" />
       <file path="$PROJECT_DIR$/cmake-build-debug-nvcc" />
       <file path="$PROJECT_DIR$/cmake-build-debug-tcc" />
+      <file path="$PROJECT_DIR$/deps/doctest" />
       <file path="$PROJECT_DIR$/deps/gnulib" />
+      <file path="$PROJECT_DIR$/deps/libceu/.idea" />
+      <file path="$PROJECT_DIR$/deps/libceu/.vs" />
       <file path="$PROJECT_DIR$/deps/libceu/.vscode" />
+      <file path="$PROJECT_DIR$/deps/libceu/build" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake-build-debug-bcc101-berlin" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake-build-debug-cygwin" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake-build-debug-visual-studio" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake-build-debug-vs2005" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake-build-debug-vs2010_defaults" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake-build-debug-vs2022_defaults" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake-build-debug-wsl" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/.vscode" />
+      <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/build" />
       <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/libcmake/build" />
       <file path="$PROJECT_DIR$/deps/libceu/cmake_collections/libcmake/log" />
       <file path="$PROJECT_DIR$/deps/libceu/doxygen.out.d" />
+      <file path="$PROJECT_DIR$/deps/libceu/out" />
       <file path="$PROJECT_DIR$/deps/log.c" />
       <file path="$PROJECT_DIR$/deps/log4c-log4c" />
       <file path="$PROJECT_DIR$/deps/munit" />
