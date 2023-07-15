@@ -69,7 +69,7 @@ TEST (test_ytrv_dram_uint64, test_dev_dram)
 		ASSERT_EQ(ytrv_dev_dram_load_uint16(ytrv_dev_dram, idx_to_addr(i)),  UINT16_MAX);
 	}
 	for (int i = 11; i< 19; i+=4){
-		ASSERT_EQ(ytrv_dev_dram_load_uint32(ytrv_dev_dram, idx_to_addr(i)),  UINT16_MAX);
+		ASSERT_EQ(ytrv_dev_dram_load_uint32(ytrv_dev_dram, idx_to_addr(i)),  UINT32_MAX);
 	}
 	ytrv_dev_dram_destroy(ytrv_dev_dram);
 }

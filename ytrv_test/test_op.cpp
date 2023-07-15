@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "ytrv/op.h"
+#include "ytrv/rv32i.h"
 
 TEST(test_addi, test_op)
 {

@@ -9,17 +9,23 @@ extern "C"
 #include <stddef.h>
 #include <stdbool.h>
 
+#include "ytrv/dev/bus.h"
+
+	/*!
+	 * Names of the register.
+	 */
 enum YTRV_VM_REGISTER_NAME
 {
 	YTRV_VM_REGISTER_ZERO = 0, // hardwired zero
 	YTRV_VM_REGISTER_RA = 1, // return address
 	YTRV_VM_REGISTER_SP = 2, // stack pointer
 	YTRV_VM_REGISTER_GP = 3, // global pointer
-//	3	-	x3	gp		-
-//	4	-	x4	tp	thread pointer	-
-//	5	-	x5	t0	temporary register 0	-R
-//	6	-	x6	t1	temporary register 1	-R
-//	7	-	x7	t2	temporary register 2	-R
+	YTRV_VM_REGISTER_TP = 4, // thread pointer
+	YTRV_VM_REGISTER_T0 = 5, // temporary register 0
+	YTRV_VM_REGISTER_T1 = 6, // temporary register 1
+	YTRV_VM_REGISTER_T2 = 7, // temporary register 2
+
+
 //	8	0	x8	s0 / fp	saved register 0 / frame pointer	-E
 //	9	1	x9	s1	saved register 1	-E
 //	10	2	x10	a0	function argument 0 / return value 0	-R
@@ -48,19 +54,38 @@ enum YTRV_VM_REGISTER_NAME
 
 typedef struct ytrv_vm
 {
-	uint32_t *memory;
+	ytrv_dev_bus_t *bus; // Bus connecting CPU with memory and other devices
 	uint32_t *x; // General-purposed registers
 	uint32_t pc; // Program Counter register
 
 } ytrv_vm_t;
 
-ytrv_vm_t *ytrv_vm_init(size_t initial_memory_size);
-uint32_t ytrv_vm_get_register(int index);
-uint32_t ytrv_vm_set_register(int index);
+/*!
+ * Initialize the virtual machine
+ * @param initial_memory_size Initial DRAM size in bytes.
+ * @return Initialized virtual machine.
+ */
+ytrv_vm_t *ytrv_vm_init(uint32_t initial_memory_size);
 
+/*!
+ * Safely destroy the virtual machine.
+ * @param vm Would be set to NULL.
+ */
 void ytrv_vm_destroy(ytrv_vm_t *vm);
 
 void ytrv_vm_exec_single(ytrv_vm_t *vm, uint32_t instruction);
+/*!
+ * Start the virtual machine and let it run infinitely until error occurs.
+ * @param vm
+ */
+void ytrv_vm_exec(ytrv_vm_t *vm);
+
+/*!
+ * Advance the PC counter by the length of one instruction (4 bytes).
+ * @param vm
+ */
+void ytrv_vm_advance_pc(ytrv_vm_t *vm);
+
 
 #ifdef __cplusplus
 }

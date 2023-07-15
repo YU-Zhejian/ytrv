@@ -9,15 +9,15 @@ extern "C"
 
 #include "ytrv/dev/dram.h"
 
-static inline uint64_t ytrv_dev_dram_load(ytrv_dev_dram_t *dram, uint64_t address, int length)
+uint64_t ytrv_dev_dram_load(ytrv_dev_dram_t *dram, uint64_t address, int length)
 {
 	CEU_ENSURE_NOT_NONE(dram);
 	uint64_t reti = 0;
 	uint64_t index = address - YTRV_DEV_DRAM_BASE;
 	uint64_t immi;
-	for (int i = 0; i < length / YTRV_DEV_DRAM_BYTE_LENGTHG; i++) {
+	for (int i = 0; i < length / YTRV_DEV_DRAM_BYTE_LENGTH; i++) {
 		immi = (uint64_t) dram->mem[index + i];
-		reti |= (immi << (YTRV_DEV_DRAM_BYTE_LENGTHG * i));
+		reti |= (immi << (YTRV_DEV_DRAM_BYTE_LENGTH * i));
 	}
 	return reti;
 }
@@ -39,13 +39,13 @@ uint64_t ytrv_dev_dram_load_uint64(ytrv_dev_dram_t *dram, uint64_t address)
 	return (uint64_t)ytrv_dev_dram_load(dram, address, 64);
 }
 
-static inline void ytrv_dev_dram_save(ytrv_dev_dram_t *dram, uint64_t address, uint16_t value, int length)
+void ytrv_dev_dram_save(ytrv_dev_dram_t *dram, uint64_t address, uint64_t value, int length)
 {
 	CEU_ENSURE_NOT_NONE(dram);
 	uint8_t seti;
 	uint64_t index = address - YTRV_DEV_DRAM_BASE;
-	for (int i = 0; i < length / YTRV_DEV_DRAM_BYTE_LENGTHG; i++) {
-		seti = (value >> (YTRV_DEV_DRAM_BYTE_LENGTHG * i)) & 0b11111111;
+	for (int i = 0; i < length / YTRV_DEV_DRAM_BYTE_LENGTH; i++) {
+		seti = (value >> (YTRV_DEV_DRAM_BYTE_LENGTH * i)) & 0xff; //0b11111111
 		dram->mem[index + i] = seti;
 	}
 }
