@@ -1,4 +1,4 @@
-﻿project ("ytrv" LANGUAGES C)
+﻿project("ytrv" LANGUAGES C)
 
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/ytrv.cmake")
 

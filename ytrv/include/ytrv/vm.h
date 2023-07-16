@@ -11,9 +11,9 @@ extern "C"
 
 #include "ytrv/dev/bus.h"
 
-	/*!
-	 * Names of the register.
-	 */
+/*!
+ * Names of the register.
+ */
 enum YTRV_VM_REGISTER_NAME
 {
 	YTRV_VM_REGISTER_ZERO = 0, // hardwired zero
@@ -55,9 +55,8 @@ enum YTRV_VM_REGISTER_NAME
 typedef struct ytrv_vm
 {
 	ytrv_dev_bus_t *bus; // Bus connecting CPU with memory and other devices
-	uint32_t *x; // General-purposed registers
+	uint32_t x[32]; // General-purposed registers
 	uint32_t pc; // Program Counter register
-
 } ytrv_vm_t;
 
 /*!
@@ -66,6 +65,10 @@ typedef struct ytrv_vm
  * @return Initialized virtual machine.
  */
 ytrv_vm_t *ytrv_vm_init(uint32_t initial_memory_size);
+
+void ytrv_vm_loadbin(ytrv_vm_t *vm, char *fpath);
+void ytrv_vm_except(ytrv_vm_t *vm);
+void ytrv_vm_dump_dram(ytrv_vm_t *vm, char *fpath);
 
 /*!
  * Safely destroy the virtual machine.

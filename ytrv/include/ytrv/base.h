@@ -13,12 +13,12 @@ extern "C"
 #include <stdint.h>
 #include <stdbool.h>
 
-	/*!
-	 * Check whether the compiler infrastructure is YTRV-compliant. That includes:
-	 *
-	 * - 2-based complementary in int <-> uint conversions.
-	 * - true == 1, false == 0.
-	 */
+/*!
+ * Check whether the compiler infrastructure is YTRV-compliant. That includes:
+ *
+ * - 2-based complementary in int <-> uint conversions.
+ * - true == 1, false == 0.
+ */
 static inline void ytrv_compiler_check(void)
 {
 	volatile uint32_t a = 4294967295;
@@ -33,6 +33,6 @@ static inline void ytrv_compiler_check(void)
 	assert((uint32_t)false == 0);
 }
 
-static const char* YTRV_VERSION = "0.0.1";
+static const char *YTRV_VERSION = "0.0.1";
 
 #endif // YUZJ_TINY_RISCV_BASE_H

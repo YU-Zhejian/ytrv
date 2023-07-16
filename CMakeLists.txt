@@ -9,10 +9,14 @@ include("deps/libceu/cmake/libceu.cmake")
 add_subdirectory("deps/log.c")
 include_directories("deps/log.c/src")
 
-add_subdirectory("deps/googletest")
-include_directories("deps/googletest/googletest/include")
-include_directories("deps/googletest/googlemock/include")
 
 add_subdirectory ("ytrv")
 include("ytrv/cmake/ytrv.cmake")
-add_subdirectory ("ytrv_test")
+
+if(CEU_CM_SHOULD_ENABLE_TEST)
+    enable_testing()
+    add_subdirectory("deps/googletest")
+    include_directories("deps/googletest/googletest/include")
+    include_directories("deps/googletest/googlemock/include")
+    add_subdirectory ("ytrv_test")
+endif()

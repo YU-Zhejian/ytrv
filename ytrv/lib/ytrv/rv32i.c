@@ -92,7 +92,7 @@ void ytrv_op_sll(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd)
 }
 void ytrv_op_srl(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd)
 {
-	vm->x[rd] = (vm->x[rsrc1] <<  (vm->x[rsrc2] & 0b11111));
+	vm->x[rd] = (vm->x[rsrc1] << (vm->x[rsrc2] & 0b11111));
 	ytrv_vm_advance_pc(vm);
 }
 void ytrv_op_sub(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd)
@@ -118,25 +118,54 @@ void ytrv_op_hint(ytrv_vm_t *vm)
 	ytrv_vm_advance_pc(vm);
 }
 
-void ytrv_op_jal(ytrv_vm_t *vm, uint32_t rd, uint32_t imm){
+void ytrv_op_jal(ytrv_vm_t *vm, uint32_t rd, uint32_t imm)
+{
 	// FIXME: Not finished
-	if (rd != YTRV_VM_REGISTER_ZERO)
-	{ // J opcode, which is jump without setting register
+	if (rd != YTRV_VM_REGISTER_ZERO) { // J opcode, which is jump without setting register
 		vm->x[rd] = vm->pc;
 	}
 	vm->pc = vm->pc + imm;
 }
 
-void ytrv_op_jalr(ytrv_vm_t *vm,uint32_t rsrc1, uint32_t rd, uint32_t imm){
+void ytrv_op_jalr(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t imm)
+{
 	// FIXME: Not finished
 }
 
-void ytrv_op_lui(ytrv_vm_t *vm, uint32_t rd, uint32_t imm){
+void ytrv_op_lui(ytrv_vm_t *vm, uint32_t rd, uint32_t imm)
+{
 	vm->x[rd] = imm << 12;
 	ytrv_vm_advance_pc(vm);
 }
-void ytrv_op_auipc(ytrv_vm_t *vm, uint32_t rd, uint32_t imm){
+void ytrv_op_auipc(ytrv_vm_t *vm, uint32_t rd, uint32_t imm)
+{
 	vm->x[rd] = (imm << 12) + vm->pc;
+	ytrv_vm_advance_pc(vm);
+}
+
+void ytrv_op_lw(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd)
+{
+	vm->x[rd] = ytrv_dev_bus_load_uint32(vm->bus, vm->x[rsrc1]);
+	ytrv_vm_advance_pc(vm);
+}
+void ytrv_op_lh(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd)
+{
+	vm->x[rd] = ytrv_sign_extend(ytrv_dev_bus_load_uint16(vm->bus, vm->x[rsrc1]), 16);
+	ytrv_vm_advance_pc(vm);
+}
+void ytrv_op_lb(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd)
+{
+	vm->x[rd] = ytrv_sign_extend(ytrv_dev_bus_load_uint8(vm->bus, vm->x[rsrc1]), 8);
+	ytrv_vm_advance_pc(vm);
+}
+void ytrv_op_lhu(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd)
+{
+	vm->x[rd] = ytrv_dev_bus_load_uint16(vm->bus, vm->x[rsrc1]);
+	ytrv_vm_advance_pc(vm);
+}
+void ytrv_op_lbu(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd)
+{
+	vm->x[rd] = ytrv_dev_bus_load_uint8(vm->bus, vm->x[rsrc1]);
 	ytrv_vm_advance_pc(vm);
 }
 

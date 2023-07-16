@@ -42,8 +42,8 @@ void ytrv_dev_dram_save_uint16(ytrv_dev_dram_t *dram, uint64_t address, uint16_t
 void ytrv_dev_dram_save_uint32(ytrv_dev_dram_t *dram, uint64_t address, uint32_t value);
 void ytrv_dev_dram_save_uint64(ytrv_dev_dram_t *dram, uint64_t address, uint64_t value);
 
-ytrv_dev_dram_t* ytrv_dev_dram_init(uint64_t length);
-void ytrv_dev_dram_destroy(ytrv_dev_dram_t* ytrv_dev_dram);
+ytrv_dev_dram_t *ytrv_dev_dram_init(uint64_t length);
+void ytrv_dev_dram_destroy(ytrv_dev_dram_t *ytrv_dev_dram);
 
 #ifdef __cplusplus
 }

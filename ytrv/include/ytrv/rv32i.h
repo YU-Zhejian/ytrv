@@ -63,10 +63,25 @@ enum YTRV_RV32I_OPCODE_OP_FUNCT3
 	YTRV_OPCODE_OP_FUNCT3_SRL_SRA = 0b101,
 };
 
+enum YTRV_RV32I_OPCODE_LOAD_FUNCT3
+{
+	YTRV_OPCODE_LOAD_FUNCT3_LB = 0b000,
+	YTRV_OPCODE_LOAD_FUNCT3_LH = 0b001,
+	YTRV_OPCODE_LOAD_FUNCT3_LW = 0b010,
+	YTRV_OPCODE_LOAD_FUNCT3_LBU = 0b100,
+	YTRV_OPCODE_LOAD_FUNCT3_LHU = 0b101,
+};
+
 /*!
  * XLEN for RV32I.
  */
 static const int YTRV_RV32I_XLEN = 32;
+
+static const int YTRV_RV32I_WORD = 32;
+
+static const int YTRV_RV32I_HALFWORD = 16;
+
+static const int YTRV_RV32I_BYTE = 8;
 
 void ytrv_op_addi(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t imm);
 void ytrv_op_slti(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t imm);
@@ -78,20 +93,26 @@ void ytrv_op_slli(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t shamt);
 void ytrv_op_srli(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t shamt);
 void ytrv_op_srai(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t shamt);
 
-void ytrv_op_add(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_slt(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_sltu(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_and(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_or(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_xor(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_sll(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_srl(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_sub(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
-void ytrv_op_sra(ytrv_vm_t *vm, uint32_t rsrc1,uint32_t rsrc2, uint32_t rd);
+void ytrv_op_add(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_slt(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_sltu(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_and(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_or(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_xor(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_sll(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_srl(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_sub(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
+void ytrv_op_sra(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rsrc2, uint32_t rd);
 void ytrv_op_nop(ytrv_vm_t *vm);
 
 void ytrv_op_jal(ytrv_vm_t *vm, uint32_t rd, uint32_t imm);
-void ytrv_op_jalr(ytrv_vm_t *vm,uint32_t rsrc1, uint32_t rd, uint32_t imm);
+void ytrv_op_jalr(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd, uint32_t imm);
+
+void ytrv_op_lw(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd);
+void ytrv_op_lh(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd);
+void ytrv_op_lb(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd);
+void ytrv_op_lhu(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd);
+void ytrv_op_lbu(ytrv_vm_t *vm, uint32_t rsrc1, uint32_t rd);
 
 /*!
  * LUI (load upper immediate) is used to build 32-bit constants and uses the U-type format. LUI

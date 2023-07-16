@@ -1,0 +1,6 @@
+*.o
+*.lo
+.libs/
+a.out
+*.bin
+*.elf
