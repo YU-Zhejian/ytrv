@@ -1,10 +1,3 @@
-MAKEFLAGS += --no-builtin-rules
-
-.SUFFIXES:
-
-RVCC := riscv64-unknown-elf-gcc -march=rv64g
-
-
 all: fib.bin fib.S fib.elf
 
 

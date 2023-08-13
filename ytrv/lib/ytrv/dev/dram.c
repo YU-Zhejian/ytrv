@@ -5,7 +5,7 @@
 extern "C"
 {
 #endif
-#include <ceu_check/ceu_c_utils.h>
+#include <ceu_c_utils.h>
 
 #include "ytrv/dev/dram.h"
 

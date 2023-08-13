@@ -5,7 +5,7 @@ extern "C"
 
 #include <stdio.h>
 #include <log.h>
-#include <ceu_check/ceu_c_utils.h>
+#include <ceu_c_utils.h>
 #include <ceu_check/ceu_check_os.h>
 #include <stdlib.h>
 

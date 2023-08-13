@@ -3,7 +3,7 @@ extern "C"
 {
 #endif
 #include <stdlib.h>
-#include <ceu_check/ceu_c_utils.h>
+#include <ceu_c_utils.h>
 
 #include "ytrv/dev/bus.h"
 
